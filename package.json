@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "plotly.js-dist-min": "^3.0.0",
+    "plotly.js-locales": "^3.0.1",
     "vite-plugin-dts": "^4.5.0",
     "vue": "^3.5.13"
   },

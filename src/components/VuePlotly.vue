@@ -5,6 +5,10 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, watch, defineProps, defineEmits, shallowRef } from 'vue';
 import Plotly, { Layout, Data, Config, PlotMouseEvent, PlotSelectionEvent } from 'plotly.js-dist-min';
+import locale from 'plotly.js-locales/ru'
+
+Plotly.register(locale);
+Plotly.setPlotConfig({ locale: 'ru' });
 
 const props = defineProps<{
   data: Data[];
