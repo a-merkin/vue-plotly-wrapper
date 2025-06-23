@@ -27,5 +27,12 @@
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
     "vue-tsc": "^2.2.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/vue-plotly-wrapper.es.js",
+      "require": "./dist/vue-plotly-wrapper.umd.js"
+    },
+    "./vue-plotly-wrapper.css": "./dist/vue-plotly-wrapper.css"
   }
 }

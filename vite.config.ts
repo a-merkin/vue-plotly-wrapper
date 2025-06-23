@@ -3,7 +3,10 @@ import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [vue(), dts()],
+  plugins: [vue(), dts({
+    rollupTypes: true,
+    tsconfigPath: './tsconfig.app.json'
+  })],
   build: {
     lib: {
       entry: "src/index.ts",
