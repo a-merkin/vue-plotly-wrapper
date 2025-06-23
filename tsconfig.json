@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "ESNext",
     "target": "ESNext",
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "types": [
       "vite/client"

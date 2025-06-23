@@ -19,24 +19,18 @@ const emit = defineEmits<{
   (e: 'plotly-selected', event: PlotSelectionEvent): void;
 }>();
 
-const plotDiv = shallowRef<HTMLDivElement | null>(null);
+const plotDiv = shallowRef<HTMLDivElement | undefined>();
 
-const attachEventListeners = () => {
-  if (!plotDiv.value) return;
-  plotDiv.value.on('plotly_click', (event: PlotMouseEvent) => emit('plotly-click', event));
-  plotDiv.value.on('plotly_hover', (event: PlotMouseEvent) => emit('plotly-hover', event));
-  plotDiv.value.on('plotly_selected', (event: PlotSelectionEvent) => emit('plotly-selected', event));
-};
-
-const detachEventListeners = () => {
-  if (!plotDiv.value) return;
-  Plotly.purge(plotDiv.value);
+const attachEventListeners = (plot: Plotly.PlotlyHTMLElement) => {
+  plot.on('plotly_click', (event: PlotMouseEvent) => emit('plotly-click', event));
+  plot.on('plotly_hover', (event: PlotMouseEvent) => emit('plotly-hover', event));
+  plot.on('plotly_selected', (event: PlotSelectionEvent) => emit('plotly-selected', event));
 };
 
 onMounted(async () => {
   if (plotDiv.value) {
-    await Plotly.newPlot(plotDiv.value, props.data, props.layout, props.config);
-    attachEventListeners();
+    const plot = await Plotly.newPlot(plotDiv.value, props.data, props.layout, props.config);
+    attachEventListeners(plot);
   }
 });
 
@@ -51,7 +45,6 @@ watch(
 );
 
 onBeforeUnmount(() => {
-  detachEventListeners();
   if (plotDiv.value) {
     Plotly.purge(plotDiv.value);
   }

@@ -12,8 +12,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import PlotlyWrapper from './VuePlotly.vue'; // Убедитесь, что путь к компоненту указан правильно
+import type { Data } from 'plotly.js-dist-min';
 
-const chartData = ref([
+const chartData = ref<Data[]>([
   {
     x: [1, 2, 3, 4, 5],
     y: [10, 15, 13, 17, 22],
@@ -24,9 +25,9 @@ const chartData = ref([
 ]);
 
 const chartLayout = ref({
-  title: 'Пример графика',
-  xaxis: { title: 'X-ось' },
-  yaxis: { title: 'Y-ось' },
+  title: { text: 'Пример графика' },
+  xaxis: { title: { text: 'X-ось' } },
+  yaxis: { title: { text: 'Y-ось' } },
 });
 
 const handleClick = (event: any) => {
